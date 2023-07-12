@@ -29,7 +29,7 @@
     </div>
     <div class="container">
         <h2>New Listing</h2>
-        <form enctype="multipart/form-data" method="POST" action="/addlisting">
+        <form enctype="multipart/form-data" method="POST" action="/addApplication">
             {% csrf_token %}
             {{ form.as_p }}
             <input class='btn btn-success'type="submit" value="Upload" />

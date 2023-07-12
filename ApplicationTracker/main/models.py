@@ -45,6 +45,7 @@ class Application(models.Model):
     company = models.CharField(max_length=50)
     location = models.CharField(max_length=25)
     url = models.TextField()
+    posted_by = models.ForeignKey(User, related_name='posted', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     def __str__(self):

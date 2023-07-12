@@ -35,7 +35,7 @@
         <h1 class="display-4">
             Welcome, <a href="/user/{{logged_in_user.id}}">{{logged_in_user.first}}</a>!
         </h1>
-        <p class="lead">At 4Sale, We take pride in being a market place for all of your hype neccessities!</p>
+        <p class="lead">App Track, Keep track of you and your peers applications!</p>
         <hr class="my-4">
         <p>Click the button below to create a new Application! </p>
         <p class="lead">
@@ -49,24 +49,22 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Title</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">URL</th>
                     <th scope="col">Posted By</th>
-                    <th scope="col">Price</th>
                 </tr>
             </thead>
             <tbody>
-                {% for Application in all_Applications reversed %}
+                {% for Application in all_applications reversed %}
                 <tr>
                     <th scope="row">{{Application.id}}</th>
-                    <td> 
-                        <a href="/view/{{Application.id}}">
-                            <img  src="{{MEDIA_URL}}{{Application.img}}" alt="">
-                        </a>
-                    </td>
-                    <td><a href="/view/{{Application.id}}">{{Application.title}}</a></td>
+                    <td><a href="/view/{{Application.id}}">{{Application.position}}</a></td>
+                    <td>{{Application.company}}</td>
+                    <td>{{Application.location}}</td>
+                    <td>{{Application.url}}</td>
                     <td><a href="/user/{{Application.posted_by.id}}">{{Application.posted_by.first}}#{{Application.posted_by.id}}</a></td>
-                    <td>${{Application.price}}</td>
                     {% endfor %}
                 </tr>
             </tbody>

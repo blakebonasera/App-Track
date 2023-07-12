@@ -44,7 +44,7 @@
             </thead>
             <tbody>
                 
-                <tr>{% for Application in all_Applications %}
+                <tr>{% for Application in all_applications %}
                     {% if view_user.id == Application.posted_by.id %}
                     <th scope="row">{{Application.id}}</th>
                     <td><a href="/view/{{Application.id}}">{{Application.company}}</a></td>

@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 from django.contrib import messages
+import bcrypt
+from .forms import ApplicationForm
 
 # Create your views here.
 
@@ -44,7 +46,6 @@ def success(request):
         return redirect('/')
     logged_in_user = User.objects.get(id=request.session['user_id'])
     context = {
-        'watching': logged_in_user.watching.all(),
         'logged_in_user': logged_in_user,
         'all_applications': Application.objects.all()
     }
@@ -54,8 +55,9 @@ def logout(request):
     request.session.clear()
     return redirect('/')
 
-def Application(request):
+def application(request):
     logged_in_user = User.objects.get(id=request.session['user_id'])
+    form = ApplicationForm(request.POST or None)
     if form.is_valid():
         newform.save()
     context= {
@@ -66,6 +68,7 @@ def Application(request):
 
 def addApplication(request):
     logged_in_user = User.objects.get(id=request.session['user_id'])
+    form = ApplicationForm(request.POST or None)
     if form.is_valid():
         Application.objects.create(
             position= request.POST['position'],
@@ -78,17 +81,18 @@ def addApplication(request):
 
 def viewApplication(request, num):
     logged_in_user = User.objects.get(id=request.session['user_id'])
+    form = ApplicationForm(request.POST or None)
     item = Application.objects.get(id=num)
     context ={
         'form': form,
         'logged_in_user': logged_in_user,
         'item': item,
     }
-    print(item.comments.all())
     return render(request, 'viewApplication.html', context)
 
 def updateApplication(request, num):
     to_update = Application.objects.get(id=num)
+    form = ApplicationForm(request.POST or None)
     if form.is_valid():
         to_update.position = request.POST['position']
         to_update.company = request.POST['company']
@@ -102,11 +106,7 @@ def deleteApplication(request, num):
     to_delete.delete()
     return redirect('/dashboard')
 
-def watch(request, num):
-    logged_in_user = User.objects.get(id=request.session['user_id'])
-    item = Application.objects.get(id=num)
-    logged_in_user.watching.add(item)
-    return redirect(f'/view/{item.id}')
+
 
 def user(request, num):
     view_user = User.objects.get(id=num)
