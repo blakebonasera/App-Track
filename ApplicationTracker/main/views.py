@@ -75,6 +75,7 @@ def addApplication(request):
             company=request.POST['company'],
             location=request.POST['location'],
             url=request.POST['url'],
+            status=request.POST['status'],
             posted_by= logged_in_user,
         )
     return redirect('/dashboard')
@@ -98,6 +99,7 @@ def updateApplication(request, num):
         to_update.company = request.POST['company']
         to_update.location = request.POST['location']
         to_update.url= request.POST['url']
+        to_update.status=request.POST['status']
         to_update.save()
     return redirect('/dashboard')
 

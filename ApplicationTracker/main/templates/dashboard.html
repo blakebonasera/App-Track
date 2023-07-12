@@ -33,7 +33,7 @@
         <div class="container">
         <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
         <h1 class="display-4">
-            Welcome, <a href="/user/{{logged_in_user.id}}">{{logged_in_user.first}}</a>!
+            Welcome, <a href="/user/{{logged_in_user.id}}">{{logged_in_user.first}} {{logged_in_user.last}}</a>!
         </h1>
         <p class="lead">Keep track of you and your peers applications!</p>
         <hr class="my-4">
@@ -53,6 +53,7 @@
                     <th scope="col">Company</th>
                     <th scope="col">Location</th>
                     <th scope="col">URL</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Posted By</th>
                 </tr>
             </thead>
@@ -64,7 +65,8 @@
                     <td>{{Application.company}}</td>
                     <td>{{Application.location}}</td>
                     <td>{{Application.url}}</td>
-                    <td><a href="/user/{{Application.posted_by.id}}">{{Application.posted_by.first}}#{{Application.posted_by.id}}</a></td>
+                    <td>{{Application.status}}</td>
+                    <td><a href="/user/{{Application.posted_by.id}}">{{Application.posted_by.first}} {{Application.posted_by.last}}</a></td>
                     {% endfor %}
                 </tr>
             </tbody>

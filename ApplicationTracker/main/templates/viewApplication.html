@@ -54,8 +54,9 @@
                     <li class="list-group-item">URL: {{item.url}}</li>
                     <li class="list-group-item">Posted by: <a
                             href="/user/{{item.posted_by.id}}">{{item.posted_by.first}}#{{item.posted_by.id}}</a>  <a class='btn btn-success' href = "mailto: {{item.posted_by.email}}">Send Email To User</a></li>
-                    <li class="list-group-item">Posted on: {{item.created_at}}</li>
                     <li class="list-group-item">Location: {{item.location}}</li>
+                    <li class="list-group-item">Status: {{item.Status}}</li>
+                    <li class="list-group-item">Posted on: {{item.created_at}}</li>
                 </ul>
             </div>
             {% if logged_in_user.id == item.posted_by.id %}

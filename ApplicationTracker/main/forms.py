@@ -5,3 +5,4 @@ class ApplicationForm(forms.Form):
     company = forms.CharField(max_length=50)
     location = forms.CharField(max_length=25)
     url = forms.CharField(widget=forms.Textarea)
+    status = forms.CharField(max_length=30)
