@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>4Sale: View Application</title>
+    <title>App Track: View Application</title>
     <style>
         #map {
             height: 400px;
@@ -41,7 +41,7 @@
         <div class="container">
             <a href="/dashboard" class="btn btn-primary btn-sm">Home</a>
             <br>
-            <h1 class="display-4">{{item.title}}</h1>
+            <h1 class="display-4">{{item.posted_by.first}} {{item.posted_by.last}}'s application for {{item.position}} at {{item.company}}</h1>
             
         </div>
     </div>
