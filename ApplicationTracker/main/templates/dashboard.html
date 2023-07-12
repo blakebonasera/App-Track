@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>App Track: Dashboard</title>
+    
+    <style>
+        .jumbotron{
+            background-color: 
+            #20BF55;
+            color: #FBFBFF;
+        }
+        img{
+            height: 100px;
+            width: 100px;
+        }
+        a{
+            color: #0B4F6C;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+        <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
+        <h1 class="display-4">
+            Welcome, <a href="/user/{{logged_in_user.id}}">{{logged_in_user.first}}</a>!
+        </h1>
+        <p class="lead">At 4Sale, We take pride in being a market place for all of your hype neccessities!</p>
+        <hr class="my-4">
+        <p>Click the button below to create a new Application! </p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="/newApplication" role="button">New Application</a>
+        </p>
+    </div>
+    </div>
+    <div class="container">
+        <h2>All Applications</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Posted By</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Application in all_Applications reversed %}
+                <tr>
+                    <th scope="row">{{Application.id}}</th>
+                    <td> 
+                        <a href="/view/{{Application.id}}">
+                            <img  src="{{MEDIA_URL}}{{Application.img}}" alt="">
+                        </a>
+                    </td>
+                    <td><a href="/view/{{Application.id}}">{{Application.title}}</a></td>
+                    <td><a href="/user/{{Application.posted_by.id}}">{{Application.posted_by.first}}#{{Application.posted_by.id}}</a></td>
+                    <td>${{Application.price}}</td>
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        
+        
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html> 
